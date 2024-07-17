@@ -56,5 +56,5 @@ hard_prompt.py: The experiment sets hard prompt as templates
 
 soft_prompt.py: The experiment sets soft prompt as templates
 
-## About model
+## Pre-trained model
 You can obtain our saved model and reproduce our results through the <a href="https://drive.google.com/drive/folders/1GuchdeFsGUKh8tvCles9kcjIcC-loD5v">model link</a>
