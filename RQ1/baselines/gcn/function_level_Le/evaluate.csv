@@ -1,0 +1,7 @@
+method,whole,cvss2_C,subwords
+method,whole,cvss2_I,subwords
+method,whole,cvss2_A,subwords
+method,whole,cvss2_AC,subwords
+method,whole,cvss2_AU,subwords
+method,whole,cvss2_AV,subwords
+method,whole,cvss2_severity,subwords

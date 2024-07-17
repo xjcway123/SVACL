@@ -1,0 +1,2 @@
+problem,granularity,scope,feature,classifier,parameters,val_acc,val_prec,val_rec,val_gmean,val_f1,val_mcc,train_time,val_time,test_acc,test_prec,test_rec,test_gmean,test_f1,test_mcc,test_time
+cvss2_AU,method,whole,subwords,lgbm,100-100,0.991,0.747,0.624,0.682,0.664,0.35,13.852,0.012,0.984,0.992,0.65,0.803,0.727,0.543,0.008

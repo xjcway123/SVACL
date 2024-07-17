@@ -1,0 +1,2 @@
+problem,granularity,scope,feature,classifier,parameters,val_acc,val_prec,val_rec,val_gmean,val_f1,val_mcc,train_time,val_time,test_acc,test_prec,test_rec,test_gmean,test_f1,test_mcc,test_time
+cvss2_severity,method,whole,subwords,lgbm,100-200,0.83,0.781,0.658,0.717,0.695,0.665,49.561,0.015,0.787,0.815,0.674,0.741,0.715,0.605,0.014
