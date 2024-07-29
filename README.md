@@ -3,7 +3,7 @@
 This is the source code to the paper "Prompt Tuning-based Software Vulnerability Assessment with Continual Learning". Please refer to the paper for the experimental details.
 
 ## Approach
-<img src="figs/framework.jpg">
+<img src="figs/framework.png">
 
 ## Datasets
 The original dataset is MegaVul, you can download it from the <a href="https://github.com/Icyrockton/MegaVul">link</a>.
