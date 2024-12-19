@@ -32,21 +32,9 @@ ewc_lambda = 0.4  # EWC regularization term weight
 
 # Define classes
 classes = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
-data_paths = [
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data1/train.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data2/train.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data3/train.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data4/train.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data5/train.xlsx"
-]
+data_paths = ["data1_path","data2_path","data3_path", "data4_path","data5_path"]
 
-test_paths = [
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data1/test.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data2/test.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data3/test.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data4/test.xlsx",
-    "E:/xjc/SOTitlePlus/SOTitlePlus/data5/test.xlsx"
-]
+test_paths = ["test1_path","test2_path","test3_path", "test4_path","test5_path"]
 
 # Define function to read examples
 def read_prompt_examples(filename):
@@ -71,15 +59,14 @@ def read_prompt_examples(filename):
 plm, tokenizer, model_config, WrapperClass = load_plm(model_name, pretrainedmodel_path)
 
 # Define template
-template_text = 'The code snippet: {"placeholder":"text_a"} The vulnerability description: {"placeholder":"text_b"} {"soft":"Classify the severity:"} {"mask"}'
-
+template_text = 'The code snippet: {"placeholder":"text_a"} 
+                The vulnerability description: {"placeholder":"text_b"} 
+                {"soft":"Classify the severity:"} {"mask"}'
 mytemplate = ManualTemplate(tokenizer=tokenizer, text=template_text)
 
 # Fisher information matrix and old parameters
 fisher_dict = {}
 optpar_dict = {}
-
-
 
 # Define function to compute Fisher information matrix
 def compute_fisher(prompt_model, train_dataloader):
@@ -111,7 +98,7 @@ def ewc_loss(prompt_model, fisher_dict, optpar_dict, ewc_lambda):
             loss += (fisher * (param - optpar) ** 2).sum()
     return ewc_lambda * loss
 
-
+# Compute the confidence
 def compute_confidence(prompt_model, dataloader):
     prompt_model.eval()
     confidences = []
@@ -273,8 +260,9 @@ for i in range(1, 3):
             teacher_forcing=False, predict_eos_token=False, truncate_method="head",
             decoder_max_length=3)
         confidences_train = compute_confidence(prompt_model, train_dataloader1)
-        # 根据置信度抽取样本
-        indices_to_replay = np.argsort(confidences_train)[-100:]  # 假设抽取100个样本
+      
+        
+        indices_to_replay = np.argsort(confidences_train)[-100:]  
         examples = read_prompt_examples(data_paths[i - 1])
         for idx in indices_to_replay:
             examples.append(read_and_merge_previous_datasets(i, data_paths)[idx])
